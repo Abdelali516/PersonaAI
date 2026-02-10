@@ -36,11 +36,11 @@ prompt="""
     
     Be a helpful, thoughtful conversation partner who knows when to be brief and when to elaborate.
 """
-
 save_conversation.append(
     {"role":"system",
      "content":f"Your name is {agent_name} and {prompt}"}
 )
+
 def load_user_name():
     try:
         with open("user_name.txt","r") as file:
@@ -119,4 +119,5 @@ while True:
             model="llama3.1:8b"
             print(f"{agent_name}:",end="")
             bot_response=get_agent_response(model,user_input)
+
             file.write(f"{user_name.title()}: {user_input}\n{agent_name}:{bot_response}\n")
