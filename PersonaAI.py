@@ -4,11 +4,11 @@ save_conversation=[]
 
 def get_agent_name():
     try:
-        with open("agent_name_first.txt","r") as file:
+        with open("agent_name.txt","r") as file:
             bot_name=file.read().strip()
             return bot_name
     except FileNotFoundError:
-        with open("agent_name_first.txt","w") as file:
+        with open("agent_name.txt","w") as file:
             text=input("Do you wanna name your Agent (yes/no):").lower().strip()
             while not text or text not in ["yes","no"]:
                 text=input("Do you wanna name your Agent (yes/no):").lower().strip()
@@ -120,5 +120,6 @@ while True:
             print(f"{agent_name}:",end="")
             bot_response=get_agent_response(model,user_input)
             file.write(f"{user_name.title()}: {user_input}\n{agent_name}:{bot_response}\n")
+
 
 
