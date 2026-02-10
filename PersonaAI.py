@@ -98,7 +98,7 @@ def get_agent_response(model_type,user_text):
     return full_response
 
 with open("History.txt","a",encoding="utf-8") as file:
-    file.write("\n===== New History =====")
+    file.write("\n===== New History =====\n")
 
 while True:
     with open("History.txt","a",encoding="utf-8") as file:
@@ -121,3 +121,4 @@ while True:
             bot_response=get_agent_response(model,user_input)
 
             file.write(f"{user_name.title()}: {user_input}\n{agent_name}:{bot_response}\n")
+
