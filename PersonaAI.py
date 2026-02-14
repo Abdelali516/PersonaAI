@@ -1,13 +1,20 @@
-import ollama 
+import ollama  
 
 save_conversation=[]
 
 def get_agent_name():
+     """
+    This function loads the agent's name from a file.
+    If the file does not exist, it asks the user to create one.
+    The name is saved so it can be reused in future conversations.
+    """
     try:
+        # Try to open the file that stores the agent's name
         with open("agent_name.txt","r") as file:
-            bot_name=file.read().strip()
+            bot_name=file.read().strip() 
             return bot_name
     except FileNotFoundError:
+        # If the file does not exist, create it and ask the user for a name
         with open("agent_name.txt","w") as file:
             text=input("Do you wanna name your Agent (yes/no):").lower().strip()
             while not text or text not in ["yes","no"]:
@@ -42,12 +49,18 @@ save_conversation.append(
 )
 
 def load_user_name():
+     """
+    This function loads the user's name from a file.
+    If the file does not exist, it asks for the user's name and saves it.
+    """
     try:
+         # Try to read the user's name from a file
         with open("user_name.txt","r") as file:
             name=file.read().strip()
             print(f"{agent_name}: Welcome Back {name}.")
             return name
     except FileNotFoundError:
+        # If the file does not exist, ask for the user's name
         with open("user_name.txt","w") as file:
             name=input(f"Hi i am {agent_name} what's your name:").lower().strip()
             print(f"{agent_name}: Nice to meet you {name.title()}👋!")
@@ -97,6 +110,7 @@ def get_agent_response(model_type,user_text):
 
     return full_response
 
+# Create or append to the conversation history file
 with open("History.txt","a",encoding="utf-8") as file:
     file.write("\n===== New History =====\n")
 
@@ -120,6 +134,7 @@ while True:
             print(f"{agent_name}:",end="")
             bot_response=get_agent_response(model,user_input)
             file.write(f"{user_name.title()}: {user_input}\n{agent_name}:{bot_response}\n")
+
 
 
 
