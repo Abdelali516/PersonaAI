@@ -135,7 +135,3 @@ while True:
             bot_response=get_agent_response(model,user_input)
             file.write(f"{user_name.title()}: {user_input}\n{agent_name}:{bot_response}\n")
 
-
-
-
-
